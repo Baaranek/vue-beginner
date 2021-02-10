@@ -5,26 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue introduction</title>
   <script src="https://unpkg.com/vue@next"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div id="app">
 
     <div>
-      <button @click="age++">Increase age</button>
-      <button @click="age--">Decrease age</button>
-      <button @click="changeTitle">Change title</button>
       <button @click="toggleTitleVisibility">
         <!-- V if removes false element from DOM, V show uses css instead -->
-        <span v-if="showTitle">Hide Title</span>
-          <!-- <span v-if="!showTitle">Show Title</span> -->
-        <span v-else="showTitle">Show Title</span>
-        <span v-show="showTitle">Hide</span>
+        <span v-if="showBooks">Hide Title</span>
+          <!-- <span v-if="!showBooks">Show Title</span> -->
+        <span v-else="showBooks">Show Title</span>
+
       </button>
+      <button v-show="showBooks" @click="toggleTitleVisibility">Hide in Css</button>
     </div>
 
-    <div v-if="showTitle">
-      <h2>{{ title }} {{author}} {{ age }}</h2>
+    <a :href="url">Dynamic Url</a>
+
+    <div v-if="showBooks">
+      <ul>
+        <li v-for="book in books" @click="eventHandler(book)" :class="{fav: book.isFav}">
+          {{book.title}} - {{book.author}} - {{book.age}}
+        </li>
+      </ul>
     </div>
 
   </div>
