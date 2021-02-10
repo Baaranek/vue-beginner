@@ -9,7 +9,24 @@
 <body>
 
   <div id="app">
-    <h2>{{ title }} {{author}} </h2>
+
+    <div>
+      <button @click="age++">Increase age</button>
+      <button @click="age--">Decrease age</button>
+      <button @click="changeTitle">Change title</button>
+      <button @click="toggleTitleVisibility">
+        <!-- V if removes false element from DOM, V show uses css instead -->
+        <span v-if="showTitle">Hide Title</span>
+          <!-- <span v-if="!showTitle">Show Title</span> -->
+        <span v-else="showTitle">Show Title</span>
+        <span v-show="showTitle">Hide</span>
+      </button>
+    </div>
+
+    <div v-if="showTitle">
+      <h2>{{ title }} {{author}} {{ age }}</h2>
+    </div>
+
   </div>
 
   <script src="app.js"></script>
